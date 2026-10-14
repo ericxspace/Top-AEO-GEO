@@ -1,0 +1,21 @@
+{
+  "_readme": "Copy to <scan-dir>/entity.json and fill from the ENTITY procedure in SKILL.md section 3. Every number must come from a check run in THIS session; write 'not checked' in notes rather than guessing. scorecard.py reads the fields below.",
+  "checked_at": "YYYY-MM-DD",
+  "brand_definition": "the one-sentence definition engines currently quote (homepage meta description), copied live",
+  "organization_sameAs": ["from bot_view.json pages[0].organization_sameAs"],
+  "profiles": [
+    {"platform": "pinterest", "url": "", "exists": true, "in_sameAs": true, "definition_consistent": true, "notes": "bio names the brand + category the same way as the homepage meta?"},
+    {"platform": "instagram", "url": "", "exists": true, "in_sameAs": true, "definition_consistent": true, "notes": ""},
+    {"platform": "facebook", "url": "", "exists": true, "in_sameAs": true, "definition_consistent": true, "notes": ""},
+    {"platform": "tiktok", "url": "", "exists": null, "in_sameAs": false, "definition_consistent": null, "notes": ""},
+    {"platform": "youtube", "url": "", "exists": null, "in_sameAs": false, "definition_consistent": null, "notes": ""}
+  ],
+  "independent_mentions": 0,
+  "independent_mention_urls": [],
+  "reddit_threads_mentioning": 0,
+  "reddit_urls": [],
+  "youtube_third_party": 0,
+  "wikidata": {"item": null, "notes": "informational only: do NOT create a Wikipedia/Wikidata entry for RR (notability; self-created entries get deleted and look like spam)"},
+  "branded_prompts": {"total": 5, "recognised": 0, "source": "18-aeo-geo/citation-check-log.md latest check"},
+  "ground_truth": {"ai_sessions_30d": null, "share_of_sessions": null, "source": "PostHog HogQL per aeo-learnings 2026-10-01 method (referrer OR utm_source=chatgpt.com)"}
+}

@@ -1,0 +1,111 @@
+{
+  "_readme": "Machine copy of the facts the scripts check machine-readable surfaces against. VOLATILE: re-verify against the sources below whenever 'verified' is older than 30 days, and update this file in the same session (rule: dont-hardcode-volatile-facts). Never let a script's default override the live policy.",
+  "verified": "2026-10-14",
+  "sources": [
+    "CLAUDE.md > MARKETS & SHIPPING",
+    "13-knowledge-base/05-shipping-returns-policies.md",
+    "live Shopify shop.shopPolicies (Shipping Policy, Refund Policy)"
+  ],
+  "markets": [
+    "US",
+    "CA"
+  ],
+  "free_shipping": true,
+  "transit_business_days": [
+    15,
+    18
+  ],
+  "processing_business_days": [
+    2,
+    4
+  ],
+  "true_trust_claims": [
+    "free US + CA shipping, no minimum",
+    "duties included (DDP)",
+    "pre-shipment QC inspection (Shipping Policy s1, Refund Policy s4)",
+    "replacement/refund for verified transit damage (Refund Policy s4, 48h photo report)"
+  ],
+  "speed_claim_patterns": [
+    "\\b(fast|quick|speedy|express|rapid|lightning)\\s+(shipping|delivery|dispatch)\\b",
+    "\\bships?\\s+(fast|quickly|today|tomorrow)\\b",
+    "\\b(next|same|1|2|3|one|two|three)[- ]day\\s+(shipping|delivery)\\b",
+    "\\barrives?\\s+in\\s+([1-9]|1[0-4])\\s+(business\\s+)?days\\b",
+    "\\bdelivered\\s+in\\s+([1-9]|1[0-4])\\s+(business\\s+)?days\\b"
+  ],
+  "policy_sentence_patterns": [
+    "15\\s*[–\\-]\\s*18\\s+business\\s+days",
+    "\\b3\\s*[–\\-]\\s*4\\s+weeks\\b",
+    "\\b(three|3)\\s+to\\s+(four|4)\\s+weeks\\b"
+  ],
+  "delivery_estimate_pattern": "\\bArrives?\\s+(?:by\\s+)?[A-Z][a-z]{2,8}\\.?\\s+\\d{1,2}\\s*[\\u2013\\-]\\s*(?:[A-Z][a-z]{2,8}\\.?\\s+)?\\d{1,2}",
+  "google_feed_wordlist": {
+    "_scope": "Only the Google/Meta/Pinterest-synced fields: product title (= PDP H1), description, SEO title (= <title>), SEO description (= meta description), handle. Fine everywhere else (tags, collections, custom.* metafields, blog, pins, email). Source: CLAUDE.md PRODUCT POLICY GATE item 3.",
+    "terms": [
+      "dopamine",
+      "aromatherapy",
+      "therapy",
+      "therapeutic",
+      "anxiety",
+      "stress",
+      "depression",
+      "burnout",
+      "mental health",
+      "wellness",
+      "self-care",
+      "self care",
+      "insomnia",
+      "sleep aid",
+      "cortisol",
+      "serotonin",
+      "melatonin",
+      "heal",
+      "healing",
+      "cure",
+      "relief"
+    ]
+  },
+  "forbidden_vocabulary": {
+    "_scope": "PDP spec v2.0 s0.3 (all commercial copy). Source: 03-skills/Product Description Prompt v2.0 - Decoration That Heals.md",
+    "terms": [
+      "premium",
+      "high-quality",
+      "luxury",
+      "artisan",
+      "exquisite",
+      "exceptional",
+      "perfect for any room",
+      "elevate your space",
+      "transform your home",
+      "healing journey",
+      "intentional living",
+      "mindful design",
+      "energy",
+      "vibes",
+      "manifest",
+      "sacred space",
+      "limited stock",
+      "selling fast",
+      "don't miss out",
+      "while supplies last",
+      "last chance",
+      "revolutionary",
+      "unbelievable",
+      "best-ever",
+      "game-changing",
+      "must-have",
+      "life-changing"
+    ]
+  },
+  "health_claim_patterns": {
+    "_scope": "Layer B (commercial) never; Layer A (blog editorial) only hedged with a Science Bank source. Source: Brand_System_Decoration_That_Heals s3/s5.",
+    "patterns": [
+      "\\b(reduces?|lowers?|relieves?|eases?|cures?|treats?|heals?)\\s+(your\\s+)?(stress|anxiety|depression|cortisol|insomnia|burnout|blood pressure)\\b",
+      "\\bhelps?\\s+(you\\s+)?sleep\\b",
+      "\\b(boosts?|increases?|spikes?|releases?)\\s+(your\\s+)?(dopamine|serotonin|mood chemicals)\\b",
+      "\\bcolou?r therapy\\b",
+      "\\bchromotherapy\\b",
+      "\\bproven to make you happ",
+      "\\bdecor for (your )?anxiety\\b"
+    ]
+  }
+}
