@@ -51,6 +51,9 @@ STOP = set("the a an of to for in on and or with your you my is are do does can 
            "should i it be at by from this that".split())
 PRICE = re.compile(r"\$\s?\d")
 TAGLINE = re.compile(r"decorate your mood", re.I)
+# "vibe(s)" naming RR's style taxonomy: "shop by vibe", "across our Dopamine, Memphis and Eclectic vibes"
+TAXONOMY_VIBE = re.compile(r"(\b(by|between|across|explore the|find your|whole|every|our)\b[^.]{0,6}\bvibes?\b"
+                           r"|\b(dopamine|memphis|mid-century|eclectic)\b[^.]{0,70}\bvibes?\b)", re.I)
 
 
 # ---------------------------------------------------------------- content extraction
@@ -254,7 +257,11 @@ def gates(text, ptype, scope_label):
             g("FAIL" if ptype in ("product", "collection") else "REVIEW", "health-claim",
               f"'{m.group(0)}': Layer B never; Layer A only hedged + Science Bank source")
     for term in TRUTH["forbidden_vocabulary"]["terms"]:
-        m = re.search(r"\b" + re.escape(term) + r"\b", text, re.I)
+        hits = list(re.finditer(r"\b" + re.escape(term) + r"\b", text, re.I))
+        if term == "vibes" and ptype == "collection":
+            # Ruling 2026-10-14: in collections "vibe(s)" is fine as the style-taxonomy noun
+            hits = [h for h in hits if not TAXONOMY_VIBE.search(text[max(0, h.start() - 80):h.end() + 5])]
+        m = hits[0] if hits else None
         if m:
             # REVIEW, not FAIL: context decides ("Premium Silver" is a supplier variant name,
             # "energy-efficient LED" is a spec), and only a human can tell (first audit, 2026-10-14)

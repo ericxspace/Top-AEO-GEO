@@ -78,9 +78,15 @@ The scan folder holds `bot_view.json`, `passages/*.json` and `entity.json`. The 
 - **Strict `Accept: text/markdown` → 404** on PDPs/collections. This is Shopify platform behaviour; nothing in the theme can change it.
 - **`/llms.txt` is Shopify's agent-commerce file.** Never replace it with a content map.
 
-## 5. Cadence (proposed, not wired)
-Run §1-§4 once a month, the day before `aeo-citation-check` (1st, 10:00), so the check reads a fresh scorecard. Also run §1 after every theme publish, after waiting out the edge cache: compare `served_theme_id` with the MAIN theme first. Adding this to a scheduled routine changes the routine system, so it needs Eric's approval and the standing-rule protocol (CLAUDE.md + routine prompt + `FLEET_CHARTER.md`).
+## 5. Cadence (wired 2026-10-14)
+- **Monthly:** routine `aeo-geo-scan` runs the 1st at 08:30 and executes `run_scan.py --phase botview`, then `--phase lint`, then entity, then `--phase scorecard`, writing `geo-scans/<date>/summary.md`. The 10:00 `aeo-citation-check` reads that summary.
+- **Manual equivalent:** run the same three phases one after another, never in parallel.
+- **After every theme publish:** run §1 once the edge cache clears, and compare `served_theme_id` with the MAIN theme first.
 
 ## Changelog
+- **v1.2, 2026-10-14:**
+  - Added `scripts/run_scan.py`, which runs the whole monthly scan as three sequential phases (botview / lint / scorecard). It reads `geo-scans/ai-landing.txt` and `geo-scans/targets.json`.
+  - The lint now accepts "vibe/vibes" in collections when it names the style taxonomy (Eric delegated the ruling 2026-10-14).
+  - Wired as the monthly routine `aeo-geo-scan` (1st, 08:30), read by `aeo-citation-check`.
 - **v1.1, 2026-10-14:** first full-site audit (`18-aeo-geo/GEO_Audit_2026-10-14.md`). Added 429/503 backoff and retries, and split non-200 results into rate-limited / page-unavailable / bot-specific. Articles are now sampled from `sitemap_articles_*`. Published as the GitHub repo **Top AEO-GEO**.
 - **v1.0, 2026-10-14:** created from the geo-seo-claude analysis. First scan: `18-aeo-geo/geo-scans/2026-10-14/`.

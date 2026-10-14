@@ -27,6 +27,7 @@ retro-radius-geo-audit/
                                    llms.txt, Link/UCP, Markdown negotiation, raw-HTML schema vs truth
   scripts/passage_lint.py          deterministic citability lint for a URL or a draft (.html/.md)
   scripts/scorecard.py             dated scorecard + delta vs the previous scan
+  scripts/run_scan.py              the monthly full-site scan as 3 sequential phases (botview / lint / scorecard)
   scripts/rrgeo_common.py          stdlib fetch + tiny DOM + JSON-LD helpers
   references/truth-gate.json       the facts machine-readable surfaces must match (shipping, markets, wordlists)
   references/crawler-matrix-2026.md AI bot table + stance + agent-readiness checks
@@ -56,5 +57,6 @@ robocopy ".claude\skills\retro-radius-geo-audit" "D:\Pinterest\Top-AEO-GEO\retro
 ```
 
 ## Changelog
+- v1.2 (2026-10-14): `run_scan.py` pipeline for scheduled monthly scans; context-aware vocabulary rule (a brand's style-taxonomy noun is not flagged in category copy).
 - v1.1 (2026-10-14): first full-site audit (302 pages, 58 URLs x 10 bots). Fixes found by running it: 429/503 backoff + retries; non-200s split into rate-limited / page-unavailable / bot-specific; Common Questions read from the theme's `<h3>` markup; short PDP answers no longer filtered out of scoring; one penalty per distinct issue in the truth score; forbidden vocabulary downgraded to REVIEW (context decides).
 - v1.0 (2026-10-14): first release.
